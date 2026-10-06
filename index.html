@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Quantum Breeze — Overview Diagram | المخطط العام</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Cairo:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html, body {
+    width:100%; min-height:100%;
+    font-family:'Tajawal','Inter','Cairo',Tahoma,sans-serif;
+    background:#02060d; color:#e8f4ff;
+    overflow-x:hidden;
+  }
+
+  /* ===== TOP BAR ===== */
+  #topbar {
+    position:sticky; top:0; z-index:1000;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 20px;
+    background:linear-gradient(90deg,#050a14,#0a1628,#050a14);
+    border-bottom:1px solid rgba(80,200,255,0.18);
+    box-shadow:0 2px 20px rgba(0,100,200,0.15);
+    flex-wrap:wrap; gap:10px;
+  }
+  #topbar .brand { display:flex; align-items:center; gap:12px; }
+  #topbar .brand .logo {
+    width:38px; height:38px; border-radius:10px;
+    background:linear-gradient(135deg,#5ff2ff,#3aa8ff,#a06bff);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:900; font-size:18px; color:#031020;
+    box-shadow:0 0 22px rgba(90,200,255,0.55);
+  }
+  #topbar .brand .txt h1 {
+    font-size:14.5px; font-weight:800; letter-spacing:.4px;
+    background:linear-gradient(90deg,#5ff2ff,#3aa8ff,#a06bff);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  #topbar .brand .txt p { font-size:10.5px; color:#6fa8c8; margin-top:1px; }
+
+  #topbar .toolbar { display:flex; gap:7px; align-items:center; flex-wrap:wrap; }
+
+  .tb-btn {
+    display:flex; align-items:center; gap:6px;
+    padding:8px 14px; font-size:11.5px; font-weight:700; cursor:pointer;
+    background:linear-gradient(160deg,rgba(20,50,80,0.9),rgba(10,25,45,0.9));
+    border:1px solid rgba(80,200,255,0.28); border-radius:9px; color:#bfe6ff;
+    transition:all .18s; font-family:inherit; white-space:nowrap;
+    text-decoration:none;
+  }
+  .tb-btn:hover {
+    background:linear-gradient(160deg,rgba(30,80,130,0.95),rgba(15,40,70,0.95));
+    border-color:rgba(100,220,255,0.6); color:#fff; transform:translateY(-1px);
+  }
+  .tb-btn.primary { background:linear-gradient(160deg,#1c6fa8,#0d4570); border-color:#4fd0ff; color:#fff; }
+  .tb-btn.primary:hover { background:linear-gradient(160deg,#2a8fd0,#0f5a94); }
+  .tb-btn.success { background:linear-gradient(160deg,#1a8a5a,#0d5a3a); border-color:#4fffaa; color:#fff; }
+  .tb-btn.success:hover { background:linear-gradient(160deg,#22a86e,#0f6a45); }
+  .tb-btn.purple {
+    background:linear-gradient(160deg,#6a35b8,#4a1a78); border-color:#c48bff; color:#fff;
+    box-shadow:0 0 16px rgba(196,139,255,0.4);
+  }
+  .tb-btn.purple:hover { background:linear-gradient(160deg,#8a45d8,#5f22a0); transform:translateY(-1px); }
+  .tb-btn.gold {
+    background:linear-gradient(160deg,#a87a1a,#6a4a10); border-color:#ffd75c; color:#fff;
+    box-shadow:0 0 16px rgba(255,215,92,0.35);
+  }
+  .tb-btn.gold:hover { background:linear-gradient(160deg,#c89520,#8a5a10); transform:translateY(-1px); }
+  .tb-btn.project {
+    background:linear-gradient(160deg,#2a5a9a,#1a3a6a);
+    border-color:#5fa8ff; color:#fff;
+    box-shadow:0 0 16px rgba(95,168,255,0.35);
+  }
+  .tb-btn.project:hover {
+    background:linear-gradient(160deg,#3a6aba,#2a4a7a);
+    border-color:#7fc8ff; transform:translateY(-1px);
+  }
+  .tb-btn.en {
+    background:linear-gradient(160deg,#1a4a8a,#0a2a5a);
+    border-color:#4fa8ff; color:#fff;
+  }
+  .tb-btn.en:hover { background:linear-gradient(160deg,#2a5a9a,#1a3a6a); }
+  .tb-btn.danger { border-color:rgba(255,120,80,0.4); color:#ff9a70; }
+  .tb-btn.danger:hover { background:linear-gradient(160deg,#8a2a1a,#5a1a10); border-color:#ff7a4c; color:#fff; }
+
+  .status-dot { display:flex; align-items:center; gap:6px; font-size:11px; color:#5cffb0; padding:0 8px; }
+  .status-dot .d {
+    width:7px; height:7px; border-radius:50%; background:#5cffb0;
+    box-shadow:0 0 8px #5cffb0; animation:pulse 1.8s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+
+  /* ===== BANNER ===== */
+  #banner {
+    max-width:1200px; margin:18px auto 0; padding:14px 22px;
+    background:linear-gradient(150deg,rgba(40,100,160,0.25),rgba(60,30,120,0.2));
+    border:1px solid rgba(120,180,255,0.35);
+    border-radius:12px;
+    font-size:12.5px; color:#c5e2f5;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  #banner .icon { font-size:22px; flex-shrink:0; }
+  #banner strong { color:#7fe9ff; }
+
+  /* ===== MAIN CANVAS ===== */
+  #canvasWrap {
+    max-width:1200px; margin:18px auto 40px; padding:0 20px;
+  }
+
+  .diagram-card {
+    background:linear-gradient(150deg,rgba(14,36,60,0.55),rgba(8,20,38,0.4));
+    border:1px solid rgba(80,200,255,0.22);
+    border-radius:16px;
+    overflow:hidden;
+    box-shadow:0 20px 60px rgba(0,10,30,0.7), 0 0 40px rgba(80,200,255,0.08);
+  }
+
+  .diagram-header {
+    display:flex; justify-content:space-between; align-items:center;
+    padding:14px 24px;
+    background:linear-gradient(90deg,rgba(20,50,80,0.5),rgba(10,25,45,0.3));
+    border-bottom:1px solid rgba(80,200,255,0.15);
+    flex-wrap:wrap; gap:10px;
+  }
+  .diagram-header .t { display:flex; align-items:center; gap:14px; }
+  .diagram-header .badge {
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:5px 14px; border-radius:20px;
+    background:linear-gradient(135deg,#2aa8ff,#0d6fc8);
+    color:#fff; font-size:11px; font-weight:800; letter-spacing:.5px;
+    box-shadow:0 0 14px rgba(80,200,255,0.4);
+  }
+  .diagram-header h2 { font-size:16px; font-weight:800; color:#7fe9ff; }
+  .diagram-header h2 span { display:block; font-size:11px; color:#8ab6d4; margin-top:2px; font-weight:500; }
+
+  /* ===== STAGE (SVG) ===== */
+  #stage {
+    background:linear-gradient(140deg,#f5f8fc,#eef4fa);
+    padding:24px;
+    display:flex; align-items:center; justify-content:center;
+    overflow:auto;
+    position:relative;
+  }
+  #stage svg {
+    width:100%; max-width:1120px; height:auto;
+    display:block;
+    filter: drop-shadow(0 8px 24px rgba(20,60,120,0.08));
+  }
+
+  /* ===== LEGEND FOOTER ===== */
+  .diagram-legend {
+    padding:18px 24px;
+    background:linear-gradient(90deg,rgba(10,25,45,0.5),rgba(20,50,80,0.3));
+    border-top:1px solid rgba(80,200,255,0.15);
+  }
+  .diagram-legend h3 {
+    font-size:11.5px; color:#5fa8d8; letter-spacing:1.4px;
+    text-transform:uppercase; font-weight:800; margin-bottom:10px;
+  }
+  .legend-grid {
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:6px 20px;
+  }
+  .legend-item {
+    display:flex; align-items:baseline; gap:9px;
+    font-size:12px; color:#c5ddef;
+  }
+  .legend-item .ref-num {
+    flex-shrink:0;
+    display:inline-flex; align-items:center; justify-content:center;
+    min-width:26px; height:22px; padding:0 7px;
+    border-radius:6px;
+    background:rgba(80,200,255,0.15); color:#7fe9ff;
+    font-size:11px; font-weight:800;
+    border:1px solid rgba(80,200,255,0.3);
+  }
+  .legend-item .ref-en {
+    color:#7fb8d8; font-size:10px; font-style:italic;
+    margin-right:5px; direction:ltr;
+  }
+
+  /* ===== INFO GRID ===== */
+  #infoGrid {
+    max-width:1200px; margin:0 auto 40px; padding:0 20px;
+    display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:14px;
+  }
+  .info-card {
+    background:linear-gradient(150deg,rgba(14,36,60,0.6),rgba(8,20,38,0.45));
+    border:1px solid rgba(80,200,255,0.2);
+    border-radius:12px; padding:16px 18px;
+    transition:all .25s;
+  }
+  .info-card:hover {
+    border-color:rgba(100,220,255,0.45);
+    box-shadow:0 8px 26px rgba(0,90,180,0.2);
+    transform:translateY(-2px);
+  }
+  .info-card .ic-head {
+    font-size:11px; color:#5fa8d8; letter-spacing:1.2px;
+    text-transform:uppercase; font-weight:800;
+    margin-bottom:10px;
+  }
+  .info-card .ic-value {
+    font-size:26px; font-weight:900; line-height:1.15;
+    background:linear-gradient(90deg,#5ff2ff,#3aa8ff);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    margin-bottom:4px;
+  }
+  .info-card .ic-label { font-size:11.5px; color:#8ab6d4; font-weight:600; line-height:1.5; }
+  .info-card .ic-source { font-size:10px; color:#6a9ec0; font-style:italic; margin-top:6px; }
+
+  /* ===== TOAST ===== */
+  #toast {
+    position:fixed; bottom:30px; left:50%; transform:translate(-50%,20px);
+    padding:12px 26px; font-size:13px; font-weight:700; color:#fff;
+    background:linear-gradient(135deg,rgba(20,60,100,0.96),rgba(10,35,65,0.96));
+    border:1px solid rgba(80,200,255,0.5); border-radius:12px;
+    opacity:0; transition:all .35s; pointer-events:none;
+    box-shadow:0 10px 40px rgba(0,80,180,0.4); z-index:500;
+    letter-spacing:.3px; text-align:center;
+  }
+  #toast.show { opacity:1; transform:translate(-50%,0); }
+  #toast.success { border-color:rgba(92,255,176,0.6); }
+  #toast.error { border-color:rgba(255,120,80,0.6); }
+
+  /* ===== EDIT MODE ===== */
+  [contenteditable="true"] { outline:none; border-radius:5px; transition:all .15s; }
+  body.editing [contenteditable="true"]:hover {
+    background:rgba(80,200,255,0.06);
+    box-shadow:inset 0 0 0 1px rgba(80,200,255,0.25);
+  }
+  body.editing [contenteditable="true"]:focus {
+    background:rgba(80,200,255,0.09);
+    box-shadow:inset 0 0 0 2px rgba(80,200,255,0.55);
+  }
+  body:not(.editing) [contenteditable="true"] { cursor:default; }
+
+  #editBadge {
+    position:fixed; top:76px; right:20px;
+    padding:6px 14px; border-radius:20px;
+    background:linear-gradient(135deg,#ff8a3c,#c04a1a);
+    color:#fff; font-size:11px; font-weight:800;
+    box-shadow:0 4px 18px rgba(255,120,60,0.5);
+    z-index:150; display:none; align-items:center; gap:7px;
+    letter-spacing:.5px;
+  }
+  #editBadge::before {
+    content:''; width:7px; height:7px; border-radius:50%; background:#fff;
+    animation:pulse 1.2s infinite;
+  }
+  body.editing #editBadge { display:flex; }
+
+  /* ===== SVG STYLES ===== */
+  .svg-title { font-family:'Tajawal','Inter',sans-serif; font-weight:900; font-size:20px; fill:#0a2a4a; }
+  .svg-title-en { font-family:'Inter','Tajawal',sans-serif; font-weight:800; font-size:14px; fill:#1a5a8a; letter-spacing:0.5px; }
+  .svg-sub { font-family:'Tajawal','Inter',sans-serif; font-weight:500; font-size:11px; fill:#4a6a8a; }
+  .svg-label-ar { font-family:'Tajawal',sans-serif; font-weight:800; font-size:11px; fill:#0a1a2a; }
+  .svg-label-en { font-family:'Inter',sans-serif; font-style:italic; font-weight:500; font-size:9.5px; fill:#5a7a9a; letter-spacing:0.2px; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 900px) {
+    #topbar .brand .txt h1 { font-size:12px; }
+    .tb-btn { padding:7px 11px; font-size:11px; }
+    #stage { padding:14px; }
+    .legend-grid { grid-template-columns:1fr; }
+  }
+  @media (max-width: 620px) {
+    #topbar .brand .txt p { display:none; }
+    .tb-btn { padding:6px 9px; font-size:10.5px; }
+    #banner { font-size:11.5px; padding:10px 16px; }
+  }
+
+  @media print {
+    #topbar, #banner, #infoGrid, #toast, #editBadge { display:none !important; }
+    body { background:#fff; }
+    .diagram-card { box-shadow:none; border:1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<div id="topbar">
+  <div class="brand">
+    <div class="logo">Q</div>
+    <div class="txt">
+      <h1>Quantum Breeze — Overview Diagram | المخطط العام</h1>
+      <p>Bilingual Technical Schematic · High-Resolution · Rev. 1.0</p>
+    </div>
+  </div>
+
+  <div class="toolbar">
+    <div class="status-dot" id="saveStatus">
+      <span class="d"></span><span id="saveStatusText">Saved | تم الحفظ</span>
+    </div>
+
+    <button class="tb-btn project" id="btnViewProject" title="View Full Project | عرض المشروع">
+      📊 View Project | عرض المشروع
+    </button>
+    <button class="tb-btn purple" id="btnSimulation" title="Open Interactive Simulation">
+      ▶ Simulation | المحاكاة
+    </button>
+    <button class="tb-btn gold" id="btnDemo" title="Record Demo Video">
+      🎬 Demo Video | فيديو
+    </button>
+    <button class="tb-btn" id="btnEdit" title="Edit Content">✎ Edit | تحرير</button>
+    <button class="tb-btn danger" id="btnReset" title="Reset">⟲ Reset | استعادة</button>
+    <button class="tb-btn primary" id="btnPNG" title="Export PNG">🖼 PNG</button>
+    <button class="tb-btn success" id="btnSVG" title="Export SVG">📐 SVG</button>
+    <button class="tb-btn en" id="btnEN" title="Export English Version">🌐 EN Only</button>
+    <button class="tb-btn" id="btnPDF" title="Export PDF">📄 PDF</button>
+  </div>
+</div>
+
+<!-- ===== BANNER ===== -->
+<div id="banner">
+  <span class="icon">🗺️</span>
+  <div>
+    <strong>High-Resolution Overview Diagram / مخطط النظام العام بدقة عالية</strong><br>
+    <span contenteditable="true">Complete system schematic — 5 integrated technologies, air/water flow paths, and synergistic interactions. Exportable as 4x PNG (5600×3400 px) for engineering reports and presentations.</span>
+  </div>
+</div>
+
+<!-- ===== MAIN DIAGRAM ===== -->
+<div id="canvasWrap">
+  <div class="diagram-card">
+    <div class="diagram-header">
+      <div class="t">
+        <span class="badge">OVERVIEW</span>
+        <h2>
+          <span contenteditable="true">المخطط العام لنظام Quantum Breeze المتكامل</span>
+          <span contenteditable="true">Overall System Schematic — Five Integrated Technologies</span>
+        </h2>
+      </div>
+    </div>
+
+    <div id="stage">
+      <svg id="mainDiagram" viewBox="0 0 1400 850" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <linearGradient id="titleGrad" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#0a2a4a"/>
+            <stop offset="50%" stop-color="#1a6fa8"/>
+            <stop offset="100%" stop-color="#7a4a9c"/>
+          </linearGradient>
+          <linearGradient id="bgGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f5f8fc"/>
+            <stop offset="100%" stop-color="#eaf1f8"/>
+          </linearGradient>
+
+          <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#c0392b"/>
+          </marker>
+          <marker id="arrowBlue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1a6fa8"/>
+          </marker>
+          <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#1a8a5a"/>
+          </marker>
+          <marker id="arrowPurple" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M0,0 L10,5 L0,10 z" fill="#7a4a9c"/>
+          </marker>
+
+          <pattern id="honeycomb" patternUnits="userSpaceOnUse" width="14" height="14" patternTransform="rotate(30)">
+            <circle cx="7" cy="7" r="4" fill="none" stroke="#5a90b8" stroke-width="0.6" opacity="0.5"/>
+            <circle cx="0" cy="0" r="4" fill="none" stroke="#5a90b8" stroke-width="0.6" opacity="0.3"/>
+            <circle cx="14" cy="0" r="4" fill="none" stroke="#5a90b8" stroke-width="0.6" opacity="0.3"/>
+            <circle cx="0" cy="14" r="4" fill="none" stroke="#5a90b8" stroke-width="0.6" opacity="0.3"/>
+            <circle cx="14" cy="14" r="4" fill="none" stroke="#5a90b8" stroke-width="0.6" opacity="0.3"/>
+          </pattern>
+        </defs>
+
+        <!-- Background -->
+        <rect x="0" y="0" width="1400" height="850" fill="url(#bgGrad)"/>
+
+        <!-- Title -->
+        <rect x="0" y="0" width="1400" height="70" fill="white" opacity="0.5"/>
+        <line x1="0" y1="70" x2="1400" y2="70" stroke="#1a6fa8" stroke-width="1.5"/>
+
+        <text x="700" y="28" text-anchor="middle" class="svg-title">QUANTUM BREEZE — المخطط العام للنظام المتكامل</text>
+        <text x="700" y="50" text-anchor="middle" class="svg-title-en">Overall System Schematic — Five Integrated Technologies</text>
+
+        <!-- Scale -->
+        <g transform="translate(40, 40)">
+          <line x1="0" y1="0" x2="80" y2="0" stroke="#0a1a2a" stroke-width="1.5"/>
+          <line x1="0" y1="-5" x2="0" y2="5" stroke="#0a1a2a" stroke-width="1.5"/>
+          <line x1="80" y1="-5" x2="80" y2="5" stroke="#0a1a2a" stroke-width="1.5"/>
+          <text x="40" y="-8" text-anchor="middle" font-size="9" fill="#5a6a7a" font-style="italic">≈ 2 m</text>
+        </g>
+
+        <g transform="translate(1320, 40)">
+          <text x="0" y="0" text-anchor="end" font-size="9" fill="#5a6a7a" font-style="italic">Rev. 1.0 · IECE 2026</text>
+        </g>
+
+        <!-- System Envelope -->
+        <rect x="40" y="95" width="1320" height="700" rx="14" fill="white" opacity="0.55" stroke="#2a5a8a" stroke-width="1.5" stroke-dasharray="8 4"/>
+        <text x="60" y="118" font-size="10.5" font-weight="700" fill="#2a5a8a">SYSTEM ENVELOPE | غلاف النظام</text>
+
+        <!-- COMPONENT 1: DESICCANT WHEEL -->
+        <g transform="translate(180, 420)">
+          <rect x="-100" y="130" width="200" height="14" rx="3" fill="#e5e8eb" stroke="#5a6a7a" stroke-width="1"/>
+          <rect x="-95" y="-100" width="190" height="230" rx="10" style="fill:#d6eaf8;stroke:#1a6fa8;stroke-width:1.4;"/>
+          <rect x="-95" y="-100" width="190" height="230" rx="10" fill="url(#honeycomb)" opacity="0.4"/>
+          <circle cx="0" cy="15" r="85" fill="none" stroke="#1a6fa8" stroke-width="2"/>
+          <circle cx="0" cy="15" r="85" fill="url(#honeycomb)"/>
+          <circle cx="0" cy="15" r="85" fill="none" stroke="#1a6fa8" stroke-width="1.5"/>
+          <path d="M 0,15 L 0,-70 A 85,85 0 0 1 0,100 Z" fill="#d6eaf8" opacity="0.55"/>
+          <path d="M 0,15 L 0,-70 A 85,85 0 0 0 0,100 Z" fill="#fdebd0" opacity="0.55"/>
+          <line x1="0" y1="-70" x2="0" y2="100" stroke="#1a6fa8" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <line x1="-85" y1="15" x2="85" y2="15" stroke="#1a6fa8" stroke-width="1.2" stroke-dasharray="4 3"/>
+          <circle cx="0" cy="15" r="20" fill="#fff" stroke="#1a6fa8" stroke-width="1.5"/>
+          <circle cx="0" cy="15" r="8" fill="#1a6fa8"/>
+          <text x="0" y="18" text-anchor="middle" font-size="7" font-weight="900" fill="#fff">HUB</text>
+          <path d="M -100,-55 A 110,110 0 0 1 100,-55" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+          <text x="0" y="-115" text-anchor="middle" font-size="10" font-weight="800" fill="#c0392b">ω = 8–12 rpm</text>
+          <text x="-50" y="-15" text-anchor="middle" font-size="9" font-weight="800" fill="#1a6fa8">Adsorption</text>
+          <text x="50" y="-15" text-anchor="middle" font-size="9" font-weight="800" fill="#c0621a">Regeneration</text>
+          <circle cx="-105" cy="-85" r="13" fill="#fff" stroke="#c0392b" stroke-width="1.8"/>
+          <text x="-105" y="-80" text-anchor="middle" font-size="13" font-weight="900" fill="#c0392b">1</text>
+          <text x="0" y="165" text-anchor="middle" class="svg-label-ar">عجلة التجفيف الشمسي</text>
+          <text x="0" y="179" text-anchor="middle" class="svg-label-en">Solar Desiccant Wheel</text>
+          <text x="0" y="196" text-anchor="middle" font-size="9" fill="#4a6a8a" font-weight="600">Silica gel · 60–80 °C regen.</text>
+        </g>
+
+        <!-- COMPONENT 2: MAGNETOCALORIC CORE -->
+        <g transform="translate(470, 420)">
+          <rect x="-120" y="130" width="240" height="14" rx="3" fill="#e5e8eb" stroke="#5a6a7a" stroke-width="1"/>
+          <rect x="-115" y="-100" width="230" height="230" rx="10" style="fill:#fdebd0;stroke:#c0621a;stroke-width:1.4;"/>
+          <circle cx="0" cy="15" r="85" fill="none" stroke="#c0621a" stroke-width="2" stroke-dasharray="3 3"/>
+          <circle cx="0" cy="15" r="80" fill="#fdebd0" opacity="0.5"/>
+
+          <g>
+            <g transform="translate(0, -50)"><rect x="-22" y="-11" width="44" height="22" rx="3" fill="#f8d7da" stroke="#c0392b" stroke-width="1.2"/><text x="0" y="4" text-anchor="middle" font-size="11" font-weight="900" fill="#c0392b">N</text></g>
+            <g transform="translate(53, 15) rotate(45)"><rect x="-15" y="-15" width="30" height="30" rx="3" fill="#d6eaf8" stroke="#1a6fa8" stroke-width="1.2"/><text x="0" y="4" text-anchor="middle" font-size="10" font-weight="900" fill="#1a6fa8">S</text></g>
+            <g transform="translate(75, 15)"><rect x="-11" y="-22" width="22" height="44" rx="3" fill="#f8d7da" stroke="#c0392b" stroke-width="1.2"/><text x="0" y="4" text-anchor="middle" font-size="11" font-weight="900" fill="#c0392b">N</text></g>
+            <g transform="translate(53, 80) rotate(-45)"><rect x="-15" y="-15" width="30" height="30" rx="3" fill="#d6eaf8" stroke="#1a6fa8" stroke-width="1.2"/><text x="0" y="4" text-anchor="middle" font-size="10" font-weight="900" fill="#1a6fa8">S</text></g>
+            <g transform="translate(0, 100)"><rect x="-22" y="-11" width="44" height="22" rx="3" fill="#f8d7da" stroke="#c0392b" stroke-width="1.2"/><text x="0" y="4" text-anchor="middle" font-size="11" font-weight="900" fill="#c0392b">N</text></g>
+            <g transform="translate(-53, 80) rotate(45)"><rect x="-15" y="-15" width="30" height="30" rx="3" fill="#d6eaf8" stroke="#1a6fa8" stroke-width="1.2"/><text x="0" y="4" text-anchor="middle" font-size="10" font-weight="900" fill="#1a6fa8">S</text></g>
+            <g transform="translate(-75, 15)"><rect x="-11" y="-22" width="22" height="44" rx="3" fill="#f8d7da" stroke="#c0392b" stroke-width="1.2"/><text x="0" y="4" text-anchor="middle" font-size="11" font-weight="900" fill="#c0392b">N</text></g>
+            <g transform="translate(-53, -50) rotate(-45)"><rect x="-15" y="-15" width="30" height="30" rx="3" fill="#d6eaf8" stroke="#1a6fa8" stroke-width="1.2"/><text x="0" y="4" text-anchor="middle" font-size="10" font-weight="900" fill="#1a6fa8">S</text></g>
+          </g>
+
+          <circle cx="0" cy="15" r="42" fill="#fff" stroke="#0a1a2a" stroke-width="1.8"/>
+          <circle cx="0" cy="15" r="35" fill="none" stroke="#5a6a7a" stroke-width="0.7"/>
+          <circle cx="0" cy="15" r="28" fill="none" stroke="#5a6a7a" stroke-width="0.7"/>
+          <circle cx="0" cy="15" r="21" fill="none" stroke="#5a6a7a" stroke-width="0.7"/>
+          <circle cx="0" cy="15" r="14" fill="none" stroke="#5a6a7a" stroke-width="0.7"/>
+          <text x="0" y="12" text-anchor="middle" font-size="10" font-weight="900" fill="#0a1a2a">AMR</text>
+          <text x="0" y="24" text-anchor="middle" font-size="7" fill="#5a6a7a">Gd-Si-Ge</text>
+
+          <path d="M -110,-50 A 120,120 0 0 1 110,-50" fill="none" stroke="#c0392b" stroke-width="1.5" marker-end="url(#arrowRed)"/>
+          <text x="0" y="-115" text-anchor="middle" font-size="10" font-weight="800" fill="#c0392b">ω = 60–120 rpm</text>
+
+          <rect x="-15" y="-118" width="30" height="20" rx="3" fill="#d6eaf8" stroke="#1a6fa8" stroke-width="1.2"/>
+          <text x="0" y="-105" text-anchor="middle" font-size="8" font-weight="700" fill="#1a6fa8">Cold in</text>
+
+          <rect x="-15" y="128" width="30" height="20" rx="3" fill="#fdebd0" stroke="#c0621a" stroke-width="1.2"/>
+          <text x="0" y="141" text-anchor="middle" font-size="8" font-weight="700" fill="#c0621a">Hot out</text>
+
+          <circle cx="-125" cy="-85" r="13" fill="#fff" stroke="#c0392b" stroke-width="1.8"/>
+          <text x="-125" y="-80" text-anchor="middle" font-size="13" font-weight="900" fill="#c0392b">2</text>
+
+          <text x="0" y="165" text-anchor="middle" class="svg-label-ar">المبرد المغناطيسي الحراري</text>
+          <text x="0" y="179" text-anchor="middle" class="svg-label-en">Magnetocaloric Cooler</text>
+          <text x="0" y="196" text-anchor="middle" font-size="9" fill="#4a6a8a" font-weight="600">Gd-Si-Ge · 0.8–1.5 T · ΔT ≈ 12 °C</text>
+        </g>
+
+        <!-- COMPONENT 3: PCM TANK -->
+        <g transform="translate(760, 420)">
+          <rect x="-95" y="130" width="190" height="14" rx="3" fill="#e5e8eb" stroke="#5a6a7a" stroke-width="1"/>
+          <rect x="-90" y="-100" width="180" height="230" rx="15" style="fill:#d5f5e3;stroke:#1a8a5a;stroke-width:1.4;"/>
+          <rect x="-78" y="-88" width="156" height="206" rx="10" fill="#d5f5e3" opacity="0.75" stroke="#1a8a5a" stroke-width="1"/>
+          <path d="M -60,-60 Q 0,-48 60,-60 Q 0,-36 -60,-24 Q 0,-12 60,-24 Q 0,0 -60,12 Q 0,24 60,12 Q 0,36 -60,48 Q 0,60 60,48 Q 0,72 -60,84"
+                fill="none" stroke="#1a8a5a" stroke-width="1.5" opacity="0.65"/>
+          <circle cx="-30" cy="-20" r="4" fill="#aaffdd" opacity="0.6"/>
+          <circle cx="25" cy="10" r="3" fill="#aaffdd" opacity="0.6"/>
+          <circle cx="-15" cy="45" r="5" fill="#aaffdd" opacity="0.5"/>
+          <circle cx="40" cy="-40" r="3.5" fill="#aaffdd" opacity="0.6"/>
+          <circle cx="-45" cy="70" r="3" fill="#aaffdd" opacity="0.5"/>
+          <text x="-50" y="-75" text-anchor="middle" font-size="8" font-weight="700" fill="#1a8a5a">Liquid</text>
+          <text x="-50" y="95" text-anchor="middle" font-size="8" font-weight="700" fill="#1a8a5a">Solid</text>
+          <line x1="-78" y1="10" x2="78" y2="10" stroke="#1a8a5a" stroke-width="1" stroke-dasharray="4 3"/>
+          <text x="65" y="6" text-anchor="end" font-size="8" font-style="italic" fill="#1a8a5a">T_melt</text>
+          <text x="0" y="-105" text-anchor="middle" font-size="10" font-weight="800" fill="#1a8a5a">12 °C</text>
+          <circle cx="-105" cy="-85" r="13" fill="#fff" stroke="#c0392b" stroke-width="1.8"/>
+          <text x="-105" y="-80" text-anchor="middle" font-size="13" font-weight="900" fill="#c0392b">3</text>
+          <text x="0" y="165" text-anchor="middle" class="svg-label-ar">خزان التخزين الحراري PCM</text>
+          <text x="0" y="179" text-anchor="middle" class="svg-label-en">PCM Thermal Storage Tank</text>
+          <text x="0" y="196" text-anchor="middle" font-size="9" fill="#4a6a8a" font-weight="600">Paraffin RT-12 · 20 L · 12 °C</text>
+        </g>
+
+        <!-- COMPONENT 4: RADIATIVE PANELS -->
+        <g transform="translate(1020, 420)">
+          <rect x="-105" y="115" width="210" height="16" rx="3" fill="#e5e8eb" stroke="#5a6a7a" stroke-width="1.2"/>
+          <text x="0" y="145" text-anchor="middle" font-size="8" fill="#4a6a8a">Roof structure | هيكل السطح</text>
+          <g transform="translate(-70, -60)">
+            <rect x="-30" y="-15" width="60" height="130" rx="4" style="fill:#e8daef;stroke:#7a4a9c;stroke-width:1.4;"/>
+            <line x1="-30" y1="-5" x2="30" y2="-5" stroke="#7a4a9c" stroke-width="0.7"/>
+            <line x1="-30" y1="5" x2="30" y2="5" stroke="#7a4a9c" stroke-width="0.7"/>
+            <line x1="-30" y1="15" x2="30" y2="15" stroke="#7a4a9c" stroke-width="0.7"/>
+            <text x="0" y="80" text-anchor="middle" font-size="8" font-weight="700" fill="#7a4a9c">P1</text>
+          </g>
+          <g transform="translate(0, -60)">
+            <rect x="-30" y="-15" width="60" height="130" rx="4" style="fill:#e8daef;stroke:#7a4a9c;stroke-width:1.4;"/>
+            <line x1="-30" y1="-5" x2="30" y2="-5" stroke="#7a4a9c" stroke-width="0.7"/>
+            <line x1="-30" y1="5" x2="30" y2="5" stroke="#7a4a9c" stroke-width="0.7"/>
+            <line x1="-30" y1="15" x2="30" y2="15" stroke="#7a4a9c" stroke-width="0.7"/>
+            <text x="0" y="80" text-anchor="middle" font-size="8" font-weight="700" fill="#7a4a9c">P2</text>
+          </g>
+          <g transform="translate(70, -60)">
+            <rect x="-30" y="-15" width="60" height="130" rx="4" style="fill:#e8daef;stroke:#7a4a9c;stroke-width:1.4;"/>
+            <line x1="-30" y1="-5" x2="30" y2="-5" stroke="#7a4a9c" stroke-width="0.7"/>
+            <line x1="-30" y1="5" x2="30" y2="5" stroke="#7a4a9c" stroke-width="0.7"/>
+            <line x1="-30" y1="15" x2="30" y2="15" stroke="#7a4a9c" stroke-width="0.7"/>
+            <text x="0" y="80" text-anchor="middle" font-size="8" font-weight="700" fill="#7a4a9c">P3</text>
+          </g>
+          <g stroke="#7a4a9c" stroke-width="1.5" fill="none">
+            <line x1="-70" y1="-85" x2="-70" y2="-135" marker-end="url(#arrowPurple)"/>
+            <line x1="0" y1="-85" x2="0" y2="-135" marker-end="url(#arrowPurple)"/>
+            <line x1="70" y1="-85" x2="70" y2="-135" marker-end="url(#arrowPurple)"/>
+          </g>
+          <text x="0" y="-150" text-anchor="middle" font-size="10" font-weight="800" fill="#7a4a9c">IR → Space (3 K)</text>
+          <text x="0" y="-138" text-anchor="middle" font-size="8" fill="#7a4a9c" font-style="italic">8–13 µm window</text>
+          <circle cx="-120" cy="-85" r="13" fill="#fff" stroke="#c0392b" stroke-width="1.8"/>
+          <text x="-120" y="-80" text-anchor="middle" font-size="13" font-weight="900" fill="#c0392b">4</text>
+          <text x="0" y="165" text-anchor="middle" class="svg-label-ar">ألواح التبريد الإشعاعي الفضائي</text>
+          <text x="0" y="179" text-anchor="middle" class="svg-label-en">Radiative Cooling Panels</text>
+          <text x="0" y="196" text-anchor="middle" font-size="9" fill="#4a6a8a" font-weight="600">~80 W/m² · 8–13 µm</text>
+        </g>
+
+        <!-- COMPONENT 5: AI CONTROL UNIT -->
+        <g transform="translate(700, 720)">
+          <rect x="-140" y="-38" width="280" height="76" rx="10" style="fill:#e5e8eb;stroke:#5a6a7a;stroke-width:1.4;"/>
+          <rect x="-115" y="-25" width="230" height="50" rx="5" fill="#0a1a2a"/>
+          <text x="0" y="-5" text-anchor="middle" font-size="10" font-weight="800" fill="#5cffb0">AI CORE · QUANTUM BREEZE</text>
+          <text x="0" y="12" text-anchor="middle" font-size="8" fill="#7fe9ff">STATUS: OPTIMAL · EFF: 94.2%</text>
+          <circle cx="-128" cy="-28" r="3" fill="#5cffb0"/>
+          <circle cx="-128" cy="-18" r="3" fill="#7fe9ff"/>
+          <circle cx="-128" cy="-8" r="3" fill="#ffd75c"/>
+          <circle cx="-128" cy="2" r="3" fill="#ff7a5c"/>
+          <circle cx="-155" cy="-25" r="13" fill="#fff" stroke="#c0392b" stroke-width="1.8"/>
+          <text x="-155" y="-20" text-anchor="middle" font-size="13" font-weight="900" fill="#c0392b">5</text>
+          <text x="0" y="60" text-anchor="middle" class="svg-label-ar">وحدة التحكم بالذكاء الاصطناعي</text>
+          <text x="0" y="73" text-anchor="middle" class="svg-label-en">AI Control Unit</text>
+        </g>
+
+        <!-- COMPONENT 6: BUILDING -->
+        <g transform="translate(1290, 420)">
+          <rect x="-80" y="-100" width="160" height="260" rx="6" fill="#e5e8eb" stroke="#2a5a8a" stroke-width="1.8"/>
+          <g fill="white" stroke="#2a5a8a" stroke-width="0.8">
+            <rect x="-65" y="-85" width="22" height="18"/><rect x="-35" y="-85" width="22" height="18"/><rect x="-5" y="-85" width="22" height="18"/><rect x="25" y="-85" width="22" height="18"/><rect x="55" y="-85" width="22" height="18"/>
+            <rect x="-65" y="-55" width="22" height="18"/><rect x="-35" y="-55" width="22" height="18"/><rect x="-5" y="-55" width="22" height="18"/><rect x="25" y="-55" width="22" height="18"/><rect x="55" y="-55" width="22" height="18"/>
+            <rect x="-65" y="-25" width="22" height="18"/><rect x="-35" y="-25" width="22" height="18"/><rect x="-5" y="-25" width="22" height="18"/><rect x="25" y="-25" width="22" height="18"/><rect x="55" y="-25" width="22" height="18"/>
+            <rect x="-65" y="5" width="22" height="18"/><rect x="-35" y="5" width="22" height="18"/><rect x="-5" y="5" width="22" height="18"/><rect x="25" y="5" width="22" height="18"/><rect x="55" y="5" width="22" height="18"/>
+            <rect x="-65" y="35" width="22" height="18"/><rect x="-35" y="35" width="22" height="18"/><rect x="-5" y="35" width="22" height="18"/><rect x="25" y="35" width="22" height="18"/><rect x="55" y="35" width="22" height="18"/>
+            <rect x="-65" y="65" width="22" height="18"/><rect x="-35" y="65" width="22" height="18"/><rect x="-5" y="65" width="22" height="18"/><rect x="25" y="65" width="22" height="18"/><rect x="55" y="65" width="22" height="18"/>
+          </g>
+          <rect x="-85" y="-108" width="170" height="10" rx="2" fill="#c8d0d8" stroke="#2a5a8a" stroke-width="1"/>
+          <rect x="-88" y="20" width="10" height="30" rx="2" fill="#1a6fa8"/>
+          <text x="-95" y="40" text-anchor="end" font-size="8" font-weight="700" fill="#1a6fa8">Supply</text>
+          <circle cx="-95" cy="-95" r="13" fill="#fff" stroke="#c0392b" stroke-width="1.8"/>
+          <text x="-95" y="-90" text-anchor="middle" font-size="13" font-weight="900" fill="#c0392b">6</text>
+          <text x="0" y="175" text-anchor="middle" class="svg-label-ar">المبنى المستهدف</text>
+          <text x="0" y="188" text-anchor="middle" class="svg-label-en">Target Building</text>
+        </g>
+
+        <!-- Air Flow Paths -->
+        <path d="M 1210,480 Q 1120,480 1050,530 Q 900,600 700,600 Q 500,600 350,530 Q 280,490 200,480"
+              fill="none" stroke="#c0392b" stroke-width="2.2" stroke-dasharray="10 5" marker-end="url(#arrowRed)" opacity="0.85"/>
+
+        <g transform="translate(700, 620)">
+          <rect x="-135" y="-14" width="270" height="28" rx="6" fill="#fff" stroke="#c0392b" stroke-width="1.2"/>
+          <text x="0" y="4" text-anchor="middle" font-size="10.5" font-weight="800" fill="#c0392b">Return Air · 32 °C · 60% RH</text>
+        </g>
+
+        <path d="M 350,360 Q 500,300 700,300 Q 900,300 1050,350 Q 1120,380 1210,360"
+              fill="none" stroke="#1a6fa8" stroke-width="2.2" stroke-dasharray="10 5" marker-end="url(#arrowBlue)" opacity="0.85"/>
+
+        <g transform="translate(700, 280)">
+          <rect x="-140" y="-14" width="280" height="28" rx="6" fill="#fff" stroke="#1a6fa8" stroke-width="1.2"/>
+          <text x="0" y="4" text-anchor="middle" font-size="10.5" font-weight="800" fill="#1a6fa8">Supply Air · 13–15 °C · 25% RH</text>
+        </g>
+
+        <!-- Water loops -->
+        <path d="M 545,305 Q 640,290 700,305" fill="none" stroke="#1a6fa8" stroke-width="2.2" marker-end="url(#arrowBlue)"/>
+        <text x="620" y="295" text-anchor="middle" font-size="9" font-weight="700" fill="#1a6fa8">Cold fluid</text>
+        <path d="M 700,335 Q 640,350 545,335" fill="none" stroke="#c0621a" stroke-width="2.2" marker-end="url(#arrowRed)"/>
+        <text x="620" y="352" text-anchor="middle" font-size="9" font-weight="700" fill="#c0621a">Warm fluid</text>
+        <path d="M 820,305 Q 900,290 950,305" fill="none" stroke="#c0621a" stroke-width="2.2" marker-end="url(#arrowRed)"/>
+        <path d="M 950,335 Q 900,350 820,335" fill="none" stroke="#1a6fa8" stroke-width="2" stroke-dasharray="6 3" marker-end="url(#arrowBlue)"/>
+
+        <!-- AI Control Lines -->
+        <g stroke="#7a4a9c" stroke-width="1.4" stroke-dasharray="5 3" fill="none" opacity="0.6">
+          <path d="M 560,745 Q 400,780 180,570"/>
+          <path d="M 600,745 Q 500,780 470,570"/>
+          <path d="M 760,745 Q 760,700 760,570"/>
+          <path d="M 850,745 Q 950,700 1020,570"/>
+          <path d="M 900,745 Q 1100,700 1290,530"/>
+        </g>
+
+        <g transform="translate(700, 795)">
+          <rect x="-150" y="-14" width="300" height="24" rx="5" fill="#0a1a2a" opacity="0.9"/>
+          <text x="0" y="3" text-anchor="middle" font-size="10" font-weight="700" fill="#ffd75c">AI Control Signals · 12 Sensors</text>
+        </g>
+
+        <!-- Environmental zones -->
+        <g transform="translate(1290, 130)">
+          <rect x="-100" y="-25" width="200" height="50" rx="8" fill="#0a0a1a" opacity="0.9"/>
+          <text x="0" y="-3" text-anchor="middle" font-size="11" font-weight="800" fill="#c48bff">❄ SPACE</text>
+          <text x="0" y="12" text-anchor="middle" font-size="9" fill="#a080d0">3 Kelvin · heat sink</text>
+        </g>
+
+        <g transform="translate(180, 130)">
+          <rect x="-90" y="-25" width="180" height="50" rx="8" fill="#fef5e7" opacity="0.9" stroke="#e0a020" stroke-width="1.2"/>
+          <text x="0" y="-3" text-anchor="middle" font-size="11" font-weight="800" fill="#c0621a">☀ SOLAR</text>
+          <text x="0" y="12" text-anchor="middle" font-size="9" fill="#c0621a">60–80 °C regen.</text>
+        </g>
+
+        <!-- Footer -->
+        <text x="40" y="820" font-size="9" fill="#4a6a8a" font-style="italic">Scale: 1:10 (indicative) · Thermal pipes cross-section exaggerated for clarity</text>
+        <text x="1360" y="820" text-anchor="end" font-size="9" fill="#4a6a8a" font-style="italic">Quantum Breeze · IECE 2026 · Rev. 1.0</text>
+
+      </svg>
+    </div>
+
+    <!-- ===== LEGEND ===== -->
+    <div class="diagram-legend">
+      <h3>Reference Numerals | الأرقام المرجعية</h3>
+      <div class="legend-grid">
+        <div class="legend-item"><span class="ref-num">1</span><span>عجلة التجفيف الشمسي</span><span class="ref-en">Solar Desiccant Wheel</span></div>
+        <div class="legend-item"><span class="ref-num">2</span><span>المبرد المغناطيسي الحراري</span><span class="ref-en">Magnetocaloric Cooler</span></div>
+        <div class="legend-item"><span class="ref-num">3</span><span>خزان التخزين الحراري PCM</span><span class="ref-en">PCM Storage Tank</span></div>
+        <div class="legend-item"><span class="ref-num">4</span><span>ألواح التبريد الإشعاعي</span><span class="ref-en">Radiative Panels</span></div>
+        <div class="legend-item"><span class="ref-num">5</span><span>وحدة التحكم بالذكاء الاصطناعي</span><span class="ref-en">AI Control Unit</span></div>
+        <div class="legend-item"><span class="ref-num">6</span><span>المبنى المستهدف</span><span class="ref-en">Target Building</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== INFO CARDS ===== -->
+<div id="infoGrid">
+  <div class="info-card">
+    <div class="ic-head">COP (Design Target)</div>
+    <div class="ic-value">7.2 – 7.8</div>
+    <div class="ic-label">معامل الأداء المستهدف</div>
+    <div class="ic-source">vs 2.2–3.8 for conventional (IPCC)</div>
+  </div>
+  <div class="info-card">
+    <div class="ic-head">Energy Savings</div>
+    <div class="ic-value">70 – 80%</div>
+    <div class="ic-label">الوفر المستهدف من الكهرباء</div>
+    <div class="ic-source">Design target — to be validated</div>
+  </div>
+  <div class="info-card">
+    <div class="ic-head">Refrigerant</div>
+    <div class="ic-value">0 kg</div>
+    <div class="ic-label">لا HFCs · GWP = 0</div>
+    <div class="ic-source">vs 2,088 for R-410A (IPCC)</div>
+  </div>
+  <div class="info-card">
+    <div class="ic-head">Lifespan</div>
+    <div class="ic-value">25 Years</div>
+    <div class="ic-label">العمر التشغيلي المستهدف</div>
+    <div class="ic-source">vs 10–15 for conventional</div>
+  </div>
+</div>
+
+<div id="editBadge">Edit mode ON | وضع التحرير مُفعّل</div>
+<div id="toast"></div>
+
+<script>
+/* ================================================================
+   URLs
+   ================================================================ */
+const SIMULATION_URL = 'https://eng4clay.github.io/QUANTUM-BREEZE-SIMULATION/';
+const PROJECT_URL    = 'https://eng4clay.github.io/View-Project-QUANTUM-BREEZE/';
+
+/* ================================================================
+   STATE + PERSISTENCE
+   ================================================================ */
+const STORAGE_KEY = 'quantum_breeze_overview_v2';
+let editing = false;
+let autoSaveTimer = null;
+
+function collectEdits() {
+  const edits = [];
+  document.querySelectorAll('[contenteditable="true"]').forEach((el, i) => {
+    edits.push({ i, html: el.innerHTML });
+  });
+  return { edits, savedAt: Date.now() };
+}
+
+function saveToStorage() {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(collectEdits()));
+    flashSaved();
+  } catch(e) { console.warn('Save failed:', e); }
+}
+
+function loadFromStorage() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (!raw) return false;
+    const data = JSON.parse(raw);
+    if (data.edits) {
+      const els = document.querySelectorAll('[contenteditable="true"]');
+      data.edits.forEach(e => { if (els[e.i]) els[e.i].innerHTML = e.html; });
+    }
+    return true;
+  } catch(e) { return false; }
+}
+
+function flashSaved() {
+  const el = document.getElementById('saveStatusText');
+  if (!el) return;
+  el.textContent = 'Saved | تم الحفظ';
+  clearTimeout(flashSaved._h);
+  flashSaved._h = setTimeout(() => { el.textContent = 'Saved | تم الحفظ'; }, 900);
+}
+
+/* ================================================================
+   EDIT MODE
+   ================================================================ */
+function enterEditMode() {
+  editing = true;
+  document.body.classList.add('editing');
+  document.querySelectorAll('[contenteditable]').forEach(e => e.setAttribute('contenteditable','true'));
+  document.getElementById('btnEdit').textContent = '✓ Save | حفظ';
+  document.getElementById('btnEdit').classList.add('primary');
+  toast('Edit mode ON — click any text | وضع التحرير مُفعّل', 'success');
+}
+
+function exitEditMode() {
+  editing = false;
+  document.body.classList.remove('editing');
+  document.querySelectorAll('[contenteditable]').forEach(e => e.setAttribute('contenteditable','false'));
+  document.getElementById('btnEdit').textContent = '✎ Edit | تحرير';
+  document.getElementById('btnEdit').classList.remove('primary');
+  saveToStorage();
+  toast('Saved | تم حفظ التعديلات', 'success');
+}
+
+document.getElementById('btnEdit').addEventListener('click', () => {
+  if (editing) exitEditMode(); else enterEditMode();
+});
+
+document.addEventListener('input', (e) => {
+  if (editing && e.target.matches('[contenteditable]')) {
+    clearTimeout(autoSaveTimer);
+    autoSaveTimer = setTimeout(saveToStorage, 700);
+  }
+});
+
+/* ================================================================
+   RESET
+   ================================================================ */
+document.getElementById('btnReset').addEventListener('click', () => {
+  if (!confirm('Reset to original? | استعادة النسخة الأصلية؟')) return;
+  localStorage.removeItem(STORAGE_KEY);
+  location.reload();
+});
+
+/* ================================================================
+   EXPORT PNG (4x high-res)
+   ================================================================ */
+document.getElementById('btnPNG').addEventListener('click', async () => {
+  toast('Generating PNG 4x... | جاري تجهيز الصورة');
+  try {
+    const svg = document.getElementById('mainDiagram');
+    const clone = svg.cloneNode(true);
+    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+
+    const styleEl = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+    styleEl.textContent = `
+      text { font-family: 'Tajawal','Inter',Tahoma,sans-serif; }
+      .svg-title { font-weight:900; font-size:20px; fill:#0a2a4a; }
+      .svg-title-en { font-weight:800; font-size:14px; fill:#1a5a8a; letter-spacing:0.5px; }
+      .svg-label-ar { font-weight:800; font-size:11px; fill:#0a1a2a; }
+      .svg-label-en { font-style:italic; font-weight:500; font-size:9.5px; fill:#5a7a9a; }
+    `;
+    clone.insertBefore(styleEl, clone.firstChild);
+
+    const serializer = new XMLSerializer();
+    const svgStr = serializer.serializeToString(clone);
+
+    const scale = 4;
+    const width = 1400 * scale;
+    const height = 850 * scale;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, width, height);
+
+    const img = new Image();
+    const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+
+    await new Promise((resolve, reject) => {
+      img.onload = resolve;
+      img.onerror = reject;
+      img.src = url;
+    });
+
+    ctx.drawImage(img, 0, 0, width, height);
+    URL.revokeObjectURL(url);
+
+    canvas.toBlob((pngBlob) => {
+      const downloadUrl = URL.createObjectURL(pngBlob);
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = 'Quantum_Breeze_Overview.png';
+      a.click();
+      URL.revokeObjectURL(downloadUrl);
+      toast('PNG exported: 5600×3400 px | تم التصدير بدقة 4x', 'success');
+    }, 'image/png');
+  } catch(err) {
+    console.error(err);
+    toast('PNG export error | خطأ في التصدير', 'error');
+  }
+});
+
+/* ================================================================
+   EXPORT SVG
+   ================================================================ */
+document.getElementById('btnSVG').addEventListener('click', () => {
+  const svg = document.getElementById('mainDiagram');
+  const clone = svg.cloneNode(true);
+  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+
+  const styleEl = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+  styleEl.textContent = `
+    text { font-family: 'Tajawal','Inter',Tahoma,sans-serif; }
+    .svg-title { font-weight:900; font-size:20px; fill:#0a2a4a; }
+    .svg-title-en { font-weight:800; font-size:14px; fill:#1a5a8a; letter-spacing:0.5px; }
+    .svg-label-ar { font-weight:800; font-size:11px; fill:#0a1a2a; }
+    .svg-label-en { font-style:italic; font-weight:500; font-size:9.5px; fill:#5a7a9a; }
+  `;
+  clone.insertBefore(styleEl, clone.firstChild);
+
+  const serializer = new XMLSerializer();
+  const source = '<?xml version="1.0" encoding="UTF-8"?>\n' + serializer.serializeToString(clone);
+  const blob = new Blob([source], { type: 'image/svg+xml;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'Quantum_Breeze_Overview.svg';
+  a.click();
+  URL.revokeObjectURL(url);
+  toast('SVG exported (vector) | تم تصدير SVG', 'success');
+});
+
+/* ================================================================
+   EXPORT ENGLISH-ONLY VERSION (High-Res PNG)
+   ================================================================ */
+document.getElementById('btnEN').addEventListener('click', async () => {
+  toast('Generating English version | جاري تجهيز النسخة الإنجليزية');
+  try {
+    const svg = document.getElementById('mainDiagram');
+    const clone = svg.cloneNode(true);
+    clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+    clone.setAttribute('xmlns:xlink', 'http://www.w3.org/1999/xlink');
+
+    clone.querySelectorAll('.svg-label-ar').forEach(el => el.remove());
+
+    clone.querySelectorAll('.svg-label-en').forEach(el => {
+      const y = parseFloat(el.getAttribute('y')) - 7;
+      el.setAttribute('y', String(y));
+      el.setAttribute('font-size', '12');
+      el.setAttribute('font-weight', '800');
+      el.setAttribute('font-style', 'normal');
+      el.setAttribute('fill', '#0a1a2a');
+      el.style.fontFamily = "'Inter','Tajawal',Tahoma,sans-serif";
+    });
+
+    const arTitle = clone.querySelector('.svg-title');
+    if (arTitle) arTitle.remove();
+
+    const enTitle = clone.querySelector('.svg-title-en');
+    if (enTitle) {
+      enTitle.setAttribute('y', '38');
+      enTitle.setAttribute('font-size', '20');
+      enTitle.setAttribute('font-weight', '900');
+      enTitle.setAttribute('letter-spacing', '0.5');
+      enTitle.style.fontFamily = "'Inter','Tajawal',Tahoma,sans-serif";
+    }
+
+    clone.querySelectorAll('text').forEach(el => {
+      const txt = el.textContent;
+      if (txt.includes('SYSTEM ENVELOPE')) el.textContent = 'SYSTEM ENVELOPE';
+      else if (txt.includes('Roof structure')) el.textContent = 'Roof structure';
+      else if (/[\u0600-\u06FF]/.test(txt) && !txt.includes('·')) el.remove();
+    });
+
+    const styleEl = document.createElementNS('http://www.w3.org/2000/svg', 'style');
+    styleEl.textContent = `
+      text { font-family: 'Inter','Tajawal',Tahoma,sans-serif; }
+      .svg-title { font-weight:900; font-size:20px; fill:#0a2a4a; letter-spacing:0.5px; }
+    `;
+    clone.insertBefore(styleEl, clone.firstChild);
+
+    const serializer = new XMLSerializer();
+    const svgStr = serializer.serializeToString(clone);
+
+    const scale = 4;
+    const width = 1400 * scale;
+    const height = 850 * scale;
+
+    const canvas = document.createElement('canvas');
+    canvas.width = width;
+    canvas.height = height;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, width, height);
+
+    const img = new Image();
+    const blob = new Blob([svgStr], { type: 'image/svg+xml;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+
+    await new Promise((resolve, reject) => {
+      img.onload = resolve;
+      img.onerror = reject;
+      img.src = url;
+    });
+
+    ctx.drawImage(img, 0, 0, width, height);
+    URL.revokeObjectURL(url);
+
+    canvas.toBlob((pngBlob) => {
+      const downloadUrl = URL.createObjectURL(pngBlob);
+      const a = document.createElement('a');
+      a.href = downloadUrl;
+      a.download = 'Quantum_Breeze_Overview_EN.png';
+      a.click();
+      URL.revokeObjectURL(downloadUrl);
+      toast('English version exported: 5600×3400 | تم التصدير', 'success');
+    }, 'image/png');
+  } catch(err) {
+    console.error(err);
+    toast('English export error | خطأ في التصدير', 'error');
+  }
+});
+
+/* ================================================================
+   EXPORT PDF
+   ================================================================ */
+document.getElementById('btnPDF').addEventListener('click', () => {
+  toast('Generating PDF... | جاري التجهيز');
+  const element = document.querySelector('.diagram-card');
+  const opt = {
+    margin: [10, 10, 10, 10],
+    filename: 'Quantum_Breeze_Overview.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true, backgroundColor: '#f5f8fc' },
+    jsPDF: { unit: 'mm', format: 'a3', orientation: 'landscape' }
+  };
+  html2pdf().set(opt).from(element).save()
+    .then(() => toast('PDF exported | تم التصدير', 'success'))
+    .catch(err => { console.error(err); toast('PDF error', 'error'); });
+});
+
+/* ================================================================
+   ✅ VIEW PROJECT BUTTON
+   ================================================================ */
+document.getElementById('btnViewProject').addEventListener('click', () => {
+  window.open(PROJECT_URL, '_blank');
+  toast('Opening project presentation... | يتم فتح عرض المشروع', 'success');
+});
+
+/* ================================================================
+   ✅ SIMULATION BUTTON
+   ================================================================ */
+document.getElementById('btnSimulation').addEventListener('click', () => {
+  window.open(SIMULATION_URL, '_blank');
+  toast('Opening simulation... | يتم فتح المحاكاة', 'success');
+});
+
+/* ================================================================
+   ✅ DEMO VIDEO BUTTON
+   ================================================================ */
+document.getElementById('btnDemo').addEventListener('click', () => {
+  if (confirm('Open simulation to record demo video? | فتح المحاكاة لتسجيل الفيديو؟')) {
+    window.open(SIMULATION_URL, '_blank');
+    toast('Start screen recording (OBS / Loom) | ابدأ تسجيل الشاشة', 'success');
+  }
+});
+
+/* ================================================================
+   TOAST
+   ================================================================ */
+function toast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = '';
+  if (type) t.classList.add(type);
+  t.classList.add('show');
+  clearTimeout(toast._h);
+  toast._h = setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+/* ================================================================
+   INIT
+   ================================================================ */
+function init() {
+  loadFromStorage();
+  document.querySelectorAll('[contenteditable]').forEach(e => {
+    e.setAttribute('contenteditable', 'false');
+  });
+  toast('Ready | جاهز — Edit mode available', 'success');
+}
+init();
+
+window.addEventListener('beforeunload', saveToStorage);
+</script>
+</body>
+</html>
